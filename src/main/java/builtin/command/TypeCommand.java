@@ -6,11 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
-public class TypeCommand {
-    private final String[] args;
-
+public class TypeCommand extends BuiltinCommand {
     public TypeCommand(String[] args) {
-        this.args = args;
+        super(args);
     }
 
     /**
