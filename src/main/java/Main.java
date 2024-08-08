@@ -1,3 +1,5 @@
+import builtin.TypeBuiltin;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -26,17 +28,8 @@ public class Main {
                     }
                     break;
                 case "type":
-                    if (tokens.length > 1) {
-                        switch (tokens[1]) {
-                            case "exit":
-                            case "echo":
-                            case "type":
-                                System.out.printf("%s is a shell builtin%n", tokens[1]);
-                                break;
-                            default:
-                                System.out.printf("%s: not found%n", tokens[1]);
-                        }
-                    }
+                    var type = new TypeBuiltin(Arrays.copyOfRange(tokens, 1, tokens.length));
+                    type.execute();
                     break;
                 default:
                     System.out.printf("%s: command not found%n", input);
