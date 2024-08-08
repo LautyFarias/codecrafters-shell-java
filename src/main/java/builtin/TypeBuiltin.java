@@ -1,10 +1,7 @@
 package builtin;
 
-import java.io.IOException;
-import java.nio.file.DirectoryIteratorException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
 
 public class TypeBuiltin {
@@ -24,7 +21,7 @@ public class TypeBuiltin {
         String pathEnv = System.getenv("PATH");
 
         for (String dirPath : pathEnv.split(":")) {
-            Path absPath = Paths.get(dirPath).resolve(binaryFilename);
+            Path absPath = Path.of(dirPath, binaryFilename);
 
             if (Files.isRegularFile(absPath)) return Optional.of(absPath);
         }
