@@ -1,6 +1,4 @@
-import builtin.command.EchoCommand;
-import builtin.command.ExitCommand;
-import builtin.command.TypeCommand;
+import builtin.command.*;
 
 import java.util.Arrays;
 import java.util.Scanner;

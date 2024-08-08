@@ -1,6 +1,6 @@
 package builtin.command;
 
-public abstract class BuiltinCommand {
+abstract class BuiltinCommand {
     protected final String[] args;
 
     protected BuiltinCommand(String[] args) {
