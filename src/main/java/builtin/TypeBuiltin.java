@@ -2,6 +2,7 @@ package builtin;
 
 import java.io.IOException;
 import java.nio.file.DirectoryIteratorException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
@@ -16,19 +17,16 @@ public class TypeBuiltin {
     /**
      * Find the absolute path of the given binary name.
      *
-     * @param binary A name of the binary to find.
+     * @param binaryFilename A name of the binary to find.
      * @return A real absolute Path to the given binary.
      */
-    private Optional<Path> findBinaryAbsPath(String binary) {
+    private Optional<Path> findBinaryAbsPath(String binaryFilename) {
         String pathEnv = System.getenv("PATH");
 
-        for (String path : pathEnv.split(":")) {
-            Path absPath = Paths.get(path).resolve(binary);
+        for (String dirPath : pathEnv.split(":")) {
+            Path absPath = Paths.get(dirPath).resolve(binaryFilename);
 
-            try {
-                return Optional.of(absPath.toRealPath());
-            } catch (IOException | DirectoryIteratorException ignored) {
-            }
+            if (Files.isRegularFile(absPath)) return Optional.of(absPath);
         }
 
         return Optional.empty();
