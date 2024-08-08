@@ -1,4 +1,4 @@
-import builtin.TypeBuiltin;
+import builtin.command.TypeCommand;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -28,7 +28,7 @@ public class Main {
                     }
                     break;
                 case "type":
-                    var type = new TypeBuiltin(Arrays.copyOfRange(tokens, 1, tokens.length));
+                    var type = new TypeCommand(Arrays.copyOfRange(tokens, 1, tokens.length));
                     type.execute();
                     break;
                 default:

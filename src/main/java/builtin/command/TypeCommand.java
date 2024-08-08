@@ -1,13 +1,15 @@
-package builtin;
+package builtin.command;
+
+import builtin.Builtin;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
-public class TypeBuiltin {
+public class TypeCommand {
     private final String[] args;
 
-    public TypeBuiltin(String[] args) {
+    public TypeCommand(String[] args) {
         this.args = args;
     }
 
