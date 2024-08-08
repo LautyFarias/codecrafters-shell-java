@@ -10,7 +10,7 @@ public class ExitCommand extends BuiltinCommand {
         int exitCode = 0;
 
         if (args.length > 0) {
-            exitCode = Integer.parseInt(args[1]);
+            exitCode = Integer.parseInt(args[0]);
         }
 
         System.exit(exitCode);
