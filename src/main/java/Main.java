@@ -1,4 +1,5 @@
 import builtin.command.EchoCommand;
+import builtin.command.ExitCommand;
 import builtin.command.TypeCommand;
 
 import java.util.Arrays;
@@ -16,13 +17,8 @@ public class Main {
 
             switch (tokens[0]) {
                 case "exit":
-                    if (tokens.length > 1) {
-                        int exitCode = Integer.parseInt(tokens[1]);
-                        System.exit(exitCode);
-                    }
-
-                    System.exit(0);
-                    break;
+                    var exit = new ExitCommand(Arrays.copyOfRange(tokens, 1, tokens.length));
+                    exit.execute();
                 case "echo":
                     var echo = new EchoCommand(Arrays.copyOfRange(tokens, 1, tokens.length));
                     echo.execute();
