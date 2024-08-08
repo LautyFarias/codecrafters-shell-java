@@ -25,6 +25,19 @@ public class Main {
                         System.out.println(String.join(" ", Arrays.copyOfRange(tokens, 1, tokens.length)));
                     }
                     break;
+                case "type":
+                    if (tokens.length > 1) {
+                        switch (tokens[1]) {
+                            case "exit":
+                            case "echo":
+                            case "type":
+                                System.out.printf("%s is a shell builtin%n", tokens[1]);
+                                break;
+                            default:
+                                System.out.printf("%s: command not found%n", tokens[1]);
+                        }
+                    }
+                    break;
                 default:
                     System.out.printf("%s: command not found%n", input);
             }
