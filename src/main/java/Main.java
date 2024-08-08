@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -18,6 +19,11 @@ public class Main {
                     }
 
                     System.exit(0);
+                    break;
+                case "echo":
+                    if (tokens.length > 1) {
+                        System.out.println(String.join(" ", Arrays.copyOfRange(tokens, 1, tokens.length)));
+                    }
                     break;
                 default:
                     System.out.printf("%s: command not found%n", input);
