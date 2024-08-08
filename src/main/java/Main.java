@@ -1,3 +1,4 @@
+import builtin.Builtin;
 import builtin.command.*;
 
 import java.util.Arrays;
@@ -13,20 +14,14 @@ public class Main {
 
             String[] tokens = input.split(" ");
 
-            switch (tokens[0]) {
-                case "exit":
-                    var exit = new ExitCommand(Arrays.copyOfRange(tokens, 1, tokens.length));
-                    exit.execute();
-                case "echo":
-                    var echo = new EchoCommand(Arrays.copyOfRange(tokens, 1, tokens.length));
-                    echo.execute();
-                    break;
-                case "type":
-                    var type = new TypeCommand(Arrays.copyOfRange(tokens, 1, tokens.length));
-                    type.execute();
-                    break;
-                default:
-                    System.out.printf("%s: command not found%n", input);
+            try {
+                var builtin = Builtin.valueOf(tokens[0].toUpperCase());
+                var factory = new CommandFactory(builtin);
+
+                var builtinCommand = factory.create(Arrays.copyOfRange(tokens, 1, tokens.length));
+                builtinCommand.execute();
+            } catch (IllegalArgumentException e) {
+                System.out.printf("%s: command not found%n", input);
             }
         } while (true);
     }
