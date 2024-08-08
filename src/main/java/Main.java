@@ -1,3 +1,4 @@
+import builtin.command.EchoCommand;
 import builtin.command.TypeCommand;
 
 import java.util.Arrays;
@@ -23,9 +24,8 @@ public class Main {
                     System.exit(0);
                     break;
                 case "echo":
-                    if (tokens.length > 1) {
-                        System.out.println(String.join(" ", Arrays.copyOfRange(tokens, 1, tokens.length)));
-                    }
+                    var echo = new EchoCommand(Arrays.copyOfRange(tokens, 1, tokens.length));
+                    echo.execute();
                     break;
                 case "type":
                     var type = new TypeCommand(Arrays.copyOfRange(tokens, 1, tokens.length));
