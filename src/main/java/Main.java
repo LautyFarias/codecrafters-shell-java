@@ -34,7 +34,7 @@ public class Main {
                                 System.out.printf("%s is a shell builtin%n", tokens[1]);
                                 break;
                             default:
-                                System.out.printf("%s: command not found%n", tokens[1]);
+                                System.out.printf("%s: not found%n", tokens[1]);
                         }
                     }
                     break;
