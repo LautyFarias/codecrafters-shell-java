@@ -1,4 +1,4 @@
-package builtin.command;
+package shell.builtin.command;
 
 public class ExitCommand extends BuiltinCommand {
     public ExitCommand(String[] args) {

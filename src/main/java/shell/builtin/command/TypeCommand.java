@@ -1,6 +1,6 @@
-package builtin.command;
+package shell.builtin.command;
 
-import builtin.Builtin;
+import shell.builtin.Builtin;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

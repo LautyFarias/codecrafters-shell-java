@@ -1,4 +1,4 @@
-package builtin.command;
+package shell.builtin.command;
 
 public abstract class BuiltinCommand {
     protected final String[] args;

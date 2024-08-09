@@ -1,6 +1,6 @@
-package builtin.command;
+package shell.builtin.command;
 
-import builtin.Builtin;
+import shell.builtin.Builtin;
 
 public class CommandFactory {
     private final Builtin builtin;

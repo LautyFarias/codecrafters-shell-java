@@ -1,5 +1,5 @@
-import builtin.Builtin;
-import builtin.command.*;
+import shell.builtin.Builtin;
+import shell.builtin.command.*;
 
 import java.util.Arrays;
 import java.util.Scanner;
