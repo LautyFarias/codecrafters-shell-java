@@ -1,32 +1,14 @@
 package shell.builtin.command;
 
 import shell.builtin.Builtin;
+import shell.util.SystemPath;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
 public class TypeCommand extends BuiltinCommand {
     public TypeCommand(String[] args) {
         super(args);
-    }
-
-    /**
-     * Find the absolute path of the given binary name.
-     *
-     * @param binaryFilename A name of the binary to find.
-     * @return A real absolute Path to the given binary.
-     */
-    private Optional<Path> findBinaryAbsPath(String binaryFilename) {
-        String pathEnv = System.getenv("PATH");
-
-        for (String dirPath : pathEnv.split(":")) {
-            Path absPath = Path.of(dirPath, binaryFilename);
-
-            if (Files.isRegularFile(absPath)) return Optional.of(absPath);
-        }
-
-        return Optional.empty();
     }
 
     public void execute() {
@@ -40,7 +22,7 @@ public class TypeCommand extends BuiltinCommand {
             Builtin.valueOf(arg.toUpperCase());
             System.out.printf("%s is a shell builtin%n", arg);
         } catch (IllegalArgumentException e) {
-            Optional<Path> binaryPath = findBinaryAbsPath(arg);
+            Optional<Path> binaryPath = new SystemPath().findBinary(arg);
 
             if (binaryPath.isPresent()) {
                 System.out.printf("%s is %s%n", arg, binaryPath.get());
