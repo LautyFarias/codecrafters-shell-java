@@ -16,6 +16,7 @@ public class CommandFactory {
             case ECHO -> command = new EchoCommand(args);
             case TYPE -> command = new TypeCommand(args);
             case EXIT -> command = new ExitCommand(args);
+            case PWD -> command = new PwdCommand(args);
             default -> throw new IllegalArgumentException("Unknown builtin: " + builtin);
         }
 
