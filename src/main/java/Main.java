@@ -1,6 +1,9 @@
 import shell.builtin.Builtin;
 import shell.builtin.command.*;
+import shell.util.SystemPath;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -13,15 +16,22 @@ public class Main {
             String input = scanner.nextLine();
 
             String[] tokens = input.split(" ");
+            var command = tokens[0];
 
             try {
-                var builtin = Builtin.valueOf(tokens[0].toUpperCase());
+                var builtin = Builtin.valueOf(command.toUpperCase());
                 var factory = new CommandFactory(builtin);
 
                 var builtinCommand = factory.create(Arrays.copyOfRange(tokens, 1, tokens.length));
                 builtinCommand.execute();
-            } catch (IllegalArgumentException e) {
-                System.out.printf("%s: command not found%n", input);
+            } catch (IllegalArgumentException __) {
+                try {
+                    new SystemPath().executeBinary(command, Arrays.copyOfRange(tokens, 1, tokens.length));
+                } catch (FileNotFoundException ignored) {
+                    System.out.printf("%s: command not found%n", input);
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         } while (true);
     }
