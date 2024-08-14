@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        var shell = new Shell(Paths.get(""));
+        final Shell shell = new Shell(Paths.get(""));
 
         do {
             System.out.print("$ ");
