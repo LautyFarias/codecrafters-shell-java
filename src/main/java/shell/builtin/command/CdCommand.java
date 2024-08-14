@@ -2,6 +2,7 @@ package shell.builtin.command;
 
 import shell.Shell;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class CdCommand extends BuiltinCommand {
@@ -14,6 +15,18 @@ public class CdCommand extends BuiltinCommand {
 
     @Override
     public void execute() {
-        shell.setWorkingDirectory(Path.of(args[0]).toAbsolutePath());
+        String arg;
+
+        if (args.length == 0) {
+            arg = "~";
+        } else {
+            arg = args[0];
+        }
+
+        Path path = Path.of(arg).toAbsolutePath();
+
+        if (!Files.exists(path)) System.out.printf("cd: %s: No such file or directory%n", arg);
+
+        shell.setWorkingDirectory(path);
     }
 }
