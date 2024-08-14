@@ -1,17 +1,17 @@
 package shell.builtin.command;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import shell.Shell;
 
 public class PwdCommand extends BuiltinCommand {
-    protected PwdCommand(String[] args) {
+    private final Shell shell;
+
+    protected PwdCommand(Shell shell, String[] args) {
         super(args);
+        this.shell = shell;
     }
 
     @Override
     public void execute() {
-        Path currentDir = Paths.get("");
-
-        System.out.println(currentDir.toAbsolutePath());
+        System.out.println(shell.getWorkingDirectory().toAbsolutePath());
     }
 }

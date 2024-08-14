@@ -1,5 +1,5 @@
 package shell.builtin;
 
 public enum Builtin {
-    EXIT, ECHO, TYPE, PWD;
+    EXIT, ECHO, TYPE, PWD, CD;
 }

@@ -1,14 +1,18 @@
+import shell.Shell;
 import shell.builtin.Builtin;
 import shell.builtin.command.*;
 import shell.util.SystemPath;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        var shell = new Shell(Paths.get(""));
+
         do {
             System.out.print("$ ");
 
@@ -22,7 +26,7 @@ public class Main {
                 var builtin = Builtin.valueOf(command.toUpperCase());
                 var factory = new CommandFactory(builtin);
 
-                var builtinCommand = factory.create(Arrays.copyOfRange(tokens, 1, tokens.length));
+                var builtinCommand = factory.create(shell, Arrays.copyOfRange(tokens, 1, tokens.length));
                 builtinCommand.execute();
             } catch (IllegalArgumentException __) {
                 try {
