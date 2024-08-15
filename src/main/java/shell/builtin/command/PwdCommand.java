@@ -12,6 +12,6 @@ public class PwdCommand extends BuiltinCommand {
 
     @Override
     public void execute() {
-        System.out.println(shell.getWorkingDirectory().toAbsolutePath());
+        System.out.println(shell.getWorkingDirectory());
     }
 }

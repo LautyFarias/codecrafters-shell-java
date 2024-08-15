@@ -6,14 +6,15 @@ public class Shell {
     private Path workingDirectory;
 
     public Shell(Path workingDirectory) {
-        this.workingDirectory = workingDirectory;
+        setWorkingDirectory(workingDirectory);
     }
 
     public Path getWorkingDirectory() {
-        return workingDirectory;
+        return workingDirectory.toAbsolutePath().normalize();
     }
 
     public void setWorkingDirectory(Path workingDirectory) {
+        this.workingDirectory = workingDirectory.toAbsolutePath().normalize();
     }
 
     public void printStartLine() {
