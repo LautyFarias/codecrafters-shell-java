@@ -14,7 +14,7 @@ public class Main {
         final Shell shell = new Shell(Paths.get(""));
 
         do {
-            System.out.println("$ ");
+            System.out.print("$ ");
 
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
