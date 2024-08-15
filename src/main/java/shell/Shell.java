@@ -14,6 +14,9 @@ public class Shell {
     }
 
     public void setWorkingDirectory(Path workingDirectory) {
-        this.workingDirectory = workingDirectory;
+    }
+
+    public void printStartLine() {
+        System.out.printf("$ (%s): ", getWorkingDirectory());
     }
 }
