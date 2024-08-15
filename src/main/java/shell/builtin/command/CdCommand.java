@@ -4,6 +4,7 @@ import shell.Shell;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 
 public class CdCommand extends BuiltinCommand {
     private final Shell shell;
@@ -21,6 +22,11 @@ public class CdCommand extends BuiltinCommand {
             arg = "~";
         } else {
             arg = args[0];
+        }
+
+        if (Objects.equals(arg, "~")) {
+            shell.setWorkingDirectory(Path.of(System.getenv("HOME")));
+            return;
         }
 
         Path path = shell.getWorkingDirectory().resolve(Path.of(arg));
