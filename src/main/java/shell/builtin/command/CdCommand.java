@@ -23,9 +23,12 @@ public class CdCommand extends BuiltinCommand {
             arg = args[0];
         }
 
-        Path path = Path.of(arg).toAbsolutePath();
+        Path path = shell.getWorkingDirectory().resolve(Path.of(arg));
 
-        if (!Files.exists(path)) System.out.printf("cd: %s: No such file or directory%n", arg);
+        if (!Files.exists(path)) {
+            System.out.printf("cd: %s: No such file or directory%n", arg);
+            return;
+        }
 
         shell.setWorkingDirectory(path);
     }
