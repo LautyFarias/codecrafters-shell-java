@@ -22,12 +22,9 @@ public class Main {
             String[] tokens = input.split(" ");
             var command = tokens[0];
 
+            Builtin builtin;
             try {
-                var builtin = Builtin.valueOf(command.toUpperCase());
-                var factory = new CommandFactory(builtin);
-
-                var builtinCommand = factory.create(shell, Arrays.copyOfRange(tokens, 1, tokens.length));
-                builtinCommand.execute();
+                builtin = Builtin.valueOf(command.toUpperCase());
             } catch (IllegalArgumentException __) {
                 try {
                     new SystemPath().executeBinary(command, Arrays.copyOfRange(tokens, 1, tokens.length));
@@ -36,7 +33,14 @@ public class Main {
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
+
+                continue;
             }
+
+            var factory = new CommandFactory(builtin);
+
+            BuiltinCommand builtinCommand = factory.create(shell, Arrays.copyOfRange(tokens, 1, tokens.length));
+            builtinCommand.execute();
         } while (true);
     }
 }
